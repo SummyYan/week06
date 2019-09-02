@@ -43,13 +43,16 @@ app.get('/newtask',function(req,res){
     res.sendFile(__dirname+'/newtask.html');
 });
 app.post('/addnewtask',function(req,res){
-    
+    let status='';
+    if(req.body.taskStatus ==="InProgress" || req.body.taskStatus ==="Complete"){
+        status=req.body.taskStatus;
+    }
     let newTask={
         taskID: getNewID(),
         taskName: req.body.taskName,
         taskPerson: req.body.taskPerson,
         taskDue: req.body.taskDue,
-        taskStatus: req.body.taskStatus,
+        taskStatus: status,
         taskDesc: req.body.taskDesc
     };
     
@@ -89,7 +92,7 @@ app.get('/updatetask',function(req,res){
 app.post('/task2Update',function(req,res){
     let status= req.body.newStatus
     let filter={taskID:parseInt(req.body.taskID)};
-    if(status==="InProgress" || status ==="Complete"){
+    if(status==="InProgress" || status ==="Complete" || status===''){
         let theUpdate={$set:{taskStatus:req.body.newStatus}};
         taskList.updateOne(filter,theUpdate);
         res.redirect('/listtasks');
