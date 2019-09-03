@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <style>
+                table,th,td {
+                    border: 1px solid black;
+                }
+            </style>
+    </head>
+<body>
+    <h1>
+        <a href="/">Home</a>
+        <a href="/newtask">Add New Task</a> 
+        <a href="/deletetask">Delete One Task</a>
+        <a href="/deleteall">Delete All Task</a>
+        <a href="/updatetask">Update Task</a>
+        <a href="/findNotTomorrow">Not Due Tomorrow Task</a>
+
+    </h1>
+
+    
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Assign To</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Description</th>
+        </tr>
+        <% for (let i =0; i< taskNotTomorrow.length; i++){ %>
+            <tr>
+                <td>
+                    <%=taskNotTomorrow[i].taskID%>
+                </td>
+                <td>
+                    <%=taskNotTomorrow[i].taskName%>
+                </td>
+                <td>
+                    <%=taskNotTomorrow[i].taskPerson%>
+                </td>
+                <td>
+                    <%=taskNotTomorrow[i].taskDue%>
+                </td>
+                <td>
+                    <%=taskNotTomorrow[i].taskStatus%>
+                </td>
+                <td>
+                    <%=taskNotTomorrow[i].taskDesc%>
+                </td>                
+            </tr>
+        <%}%>
+    </table>
+   
+
+</body>
+
+</html>

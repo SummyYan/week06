@@ -9,6 +9,8 @@
             <a href="/deletetask">Delete One Task</a>
             <a href="/deleteall">Delete All Task</a>
             <a href="/updatetask">Update Task</a>
+            <a href="/findNotTomorrow">Not Due Tomorrow Task</a>
+
         </h1>
     <form action="/addnewtask" method="post">
         Task Name:
@@ -16,7 +18,7 @@
         Assign To:
         <input type="text" name="taskPerson"/><br />
         Task Due:
-        <input type="text" name="taskDue"/><br />
+        <input type="date" name="taskDue"/><br />
         Task Status:
         <input type="text" name="taskStatus"/><br />
         Task Desc:

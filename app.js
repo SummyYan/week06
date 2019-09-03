@@ -7,6 +7,7 @@ let mongodb=require('mongodb');
 let mongoDBClient = mongodb.MongoClient;
 let db=null;
 let taskList=null;
+let date=new Date();
 
 let url="mongodb://localhost:27017";
 mongoDBClient.connect(url,{useNewUrlParser:true, useUnifiedTopology:true},function(err,client){
@@ -99,6 +100,18 @@ app.post('/task2Update',function(req,res){
     }else{
         res.send("invalid status. please type 'InProgress' or 'Complete'")
     }
+});
+
+app.get('/findNotTomorrow',function(req,res){
+    let year = date.getFullYear(), month=date.getMonth(), datee=date.getDate()+1;
+    let query={taskDue: {$ne:new Date(year+'-'+month+'-'+datee)}};
+    taskList.find({query}).toArray({function(err,result){
+        if(err){
+            res.send('no such tasks');
+        }else{
+            res.render('findNotTomorrow.html',{taskNotTomorrow:result});
+        }
+    }});
 });
 
 function getNewID() {
